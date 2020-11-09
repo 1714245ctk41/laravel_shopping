@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@include('partials.content-header', ['name' => 'Product', 'key' => 'List'])
+@include('partials.content-header', ['name' => 'Slider', 'key' => 'List'])
 
 <div class="row">
     <div class="col-12">
@@ -17,9 +17,9 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="text-sm-right">
-                        <a href="{{route('product.create')}}">
+                        <a href="{{route('slider.create')}}">
                             <button type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2">
-                                <i class="mdi mdi-plus mr-1"></i> Add New Product</button>
+                                <i class="mdi mdi-plus mr-1"></i> Add New Slider</button>
                             </a>
                         </div>
                     </div><!-- end col-->
@@ -35,16 +35,15 @@
                                         <label class="custom-control-label" for="customCheck1">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Product ID</th>
-                                <th>Tên Sản phẩm</th>
-                                <th>Giá</th>
+                                <th>slider ID</th>
+                                <th>Tên slider</th>
+                                <th>Description</th>
                                 <th>Hình ảnh</th>
-                                <th>Danh mục</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($products as $product)
+                        {{-- <tbody>
+                            @foreach ($menus as $menu)
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
@@ -52,28 +51,18 @@
                                         <label class="custom-control-label" for="customCheck2">&nbsp;</label>
                                     </div>
                                 </td>
-                                <td><a href="javascript: void(0);" class="text-body font-weight-bold">{{$product['id']}}</a> </td>
-                                <td>{{$product['name']}}</td>
+                            <td><a href="javascript: void(0);" class="text-body font-weight-bold">{{$menu['id']}}</a> </td>
+                                <td>{{$menu['name']}}</td>
                                 <td>
-                                    {{number_format($product['price'])}} vnđ
+                                    {{$menu['created_at']}}
                                 </td>
 
                                 <td>
-                                    <img src="{{$product['feature_image_path']}}" width="100px"  alt="">
-                                    
-                                </td>
-                                <td>
-                                    {{optional($product->category)->name}}
-                                </td>
-
-                                <td>
-                                    <a href="{{route('product.edit', ['product'=>$product['id']])}}"  class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <a href="{{route('menus.edit', ['id'=>$menu['id']])}}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                         <i class="mdi mdi-pencil font-size-18"></i></a>
                             
-                                        
-                                        {{-- {{route('product.delete', ['product'=>$product['id']])}} --}}
-                                    <a  href="" id="action_delete" data-url="{{route('product.delete', ['product'=>$product['id']])}}"
-                                         class="text-danger action_delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+
+                                    <a href="{{route('menus.delete', ['id'=>$menu['id']])}}" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
                                         <i class="mdi mdi-close font-size-18"></i></a>
                                 </td>
                                
@@ -83,21 +72,14 @@
                            
 
                             
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
               
-              @include('partials.pagination', ['paginator' => $products])
+              {{-- @include('partials.pagination', ['paginator' => $menus]) --}}
             </div>
         </div>
     </div>
 </div>
 <!-- end row -->
-@endsection
-
-
-@section('js')
-<script src="{{asset('/vendor/sweetalert2@10.js')}}"></script>
-<script src="{{asset('admins/product/index.js')}}"></script>
-
 @endsection

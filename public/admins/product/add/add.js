@@ -1,4 +1,7 @@
 $(document).ready(function() {
+//category
+ 
+//tag
     $('.select2-multiple').select2({
         tags: true,
         tokenSeparators: [',']

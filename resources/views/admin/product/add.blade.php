@@ -18,6 +18,15 @@
 
                 <h4 class="card-title">Hướng dẫn</h4>
                 <p class="card-title-desc">Điền đầy đủ thông tin bên dưới</p>
+                {{-- @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">
+                    {{ $error }}
+                </div>
+                @endforeach
+
+   
+@endif --}}
 
             <form method="POST" action="{{route('product.store')}}" data-select2-id="7" enctype="multipart/form-data">
                     @csrf
@@ -25,13 +34,17 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="name">Tên sản phẩm</label>
-                                <input id="name" name="name" type="text" class="form-control">
+                            <input value="{{old('name')}}" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
+                            @include('partials.error-validation', ['error_validation' => 'name'])
+
                             </div>
                            
                             
                             <div class="form-group">
                                 <label for="price">Giá sản phẩm</label>
-                                <input id="price" name="price" type="text" class="form-control">
+                                <input value="{{old('price')}}" id="price" name="price" type="text" class="form-control @error('price') is-invalid @enderror">
+                            @include('partials.error-validation', ['error_validation' => 'price'])
+
                             </div>
                             <div class="form-group">
 
@@ -39,7 +52,7 @@
 
                             <div class="custom-file">
                                 
-                                <input name="feature_image_path" type="file" class="form-control-fil" >
+                                <input name="feature_image_path" type="file" class="form-control-fil " >
                                 <label   for="customFile">Choose file</label>
                               </div>
                             </div>
@@ -50,7 +63,7 @@
    
                                <div class="custom-file">
                                    
-                                   <input name="image_path[]" multiple type="file" class="form-control-fil" >
+                                   <input name="image_path[]" multiple type="file" class="form-control-fil " >
                                    <label name="image_path"  for="customFile">Choose file</label>
                                  </div>
                                </div>
@@ -61,12 +74,14 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Danh mục sản phẩm</label>
-                                <select class="form-control select2" name="category_id">
-                                    <option value="0">Chọn danh mục</option>
+                                <select id="select2" class="form-control select2 @error('category_id') is-invalid @enderror" name="category_id" placeholder="hahah">
+                                    <option value="">Chọn danh mục sản phẩm</option>
                                     @php
                                         echo $htmlOption
                                     @endphp
                                 </select>
+                            @include('partials.error-validation', ['error_validation' => 'category_id'])
+
                             </div>
                             <div class="form-group" data-select2-id="7">
                                 <label class="control-label">Tag sản phẩm</label>
@@ -93,7 +108,10 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Mô tả</h4>
                                     {{-- <p class="card-title-desc">Super simple wysiwyg editor on bootstrap</p> --}}
-        <textarea name="content" class="form-control my-editor"></textarea>
+        <textarea name="content" class="form-control my-editor @error('content') is-invalid @enderror">
+           {{old('content')}}
+        </textarea>
+        @include('partials.error-validation', ['error_validation' => 'content'])
 
                                     {{-- <textarea name="content" class="summernote my-editor">Hello Summernote</textarea> --}}
                                 </div>

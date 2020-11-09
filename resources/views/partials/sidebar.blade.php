@@ -32,6 +32,12 @@
                         <span>Product</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('slider.index')}}" class=" waves-effect">
+                        <i class="bx bx-menu-alt-left"></i>
+                        <span>Slider</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">

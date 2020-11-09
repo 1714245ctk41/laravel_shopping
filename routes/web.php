@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -51,6 +52,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{product}', [AdminProductController::class, 'delete'])->name('product.delete');
         Route::POST('/update/{product}', [AdminProductController::class, 'update'])->name('product.update');
         Route::get('/create', [AdminProductController::class, 'create'])->name('product.create');
+    });
+
+    Route::prefix('slider')->group(function () {
+        Route::get('/', [SliderController::class, 'index'])->name('slider.index');
+        Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
+        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::get('/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
+        Route::POST('/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+        Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
     });
 });
 
