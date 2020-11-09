@@ -5,7 +5,7 @@
 
  <!-- start page title -->
  
-                      @include('partials.content-header', ['name' => 'slider', 'key' => 'Add'])
+                      @include('partials.content-header', ['name' => 'slider', 'key' => 'EDIT'])
                         <!-- end page title -->
 
                         <div class="row">
@@ -16,13 +16,13 @@
                                         <h4 class="card-title">Basic Information</h4>
                                         <p class="card-title-desc">Fill all information below</p> --}}
         
-<form method="POST" action="{{route('slider.store')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('slider.update', ['slider' => $slider])}}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-sm-8">
                                                     <div class="form-group">
                                                         <label for="productname">Tên slider</label>
-                                                    <input value="{{old('name')}}" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
+                                                    <input value="{{$slider['name']}}" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror">
                             @include('partials.error-validation', ['error_validation' => 'name'])
 
                                                     </div>
@@ -34,7 +34,7 @@
                                                 <div class="col-sm-8">
                                                     <div class="form-group">
                                                         <label for="productname">Mô tả slider</label>
-                                                    <textarea rows="4" id="description" name="description" type="text" class="form-control @error('description') is-invalid @enderror">{{old('description')}}</textarea>
+                                                    <textarea rows="4" id="description" name="description" type="text" class="form-control @error('description') is-invalid @enderror">{{$slider['description']}}</textarea>
                             @include('partials.error-validation', ['error_validation' => 'description'])
 
                                                     </div>
@@ -55,7 +55,14 @@
                                               </div>
                                             </div>
                                         </div>
+                                       
 
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p class="card-title-desc">Hình ảnh cũ</p>
+                                            <img src="{{$slider['image_path']}}" width="150px" class="img-fluid" alt="Responsive image">
+                                        </div>
+                                        </div>
                                             <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Thêm slider</button>
                                             {{-- <button type="submit" class="btn btn-secondary waves-effect">Cancel</button> --}}
                                         </form>

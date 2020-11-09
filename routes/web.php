@@ -57,9 +57,9 @@ Route::prefix('admin')->group(function () {
     Route::prefix('slider')->group(function () {
         Route::get('/', [SliderController::class, 'index'])->name('slider.index');
         Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
-        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
-        Route::get('/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
-        Route::POST('/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+        Route::get('/edit/{slider}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::get('/delete/{slider}', [SliderController::class, 'delete'])->name('slider.delete');
+        Route::POST('/update/{slider}', [SliderController::class, 'update'])->name('slider.update');
         Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
     });
 });

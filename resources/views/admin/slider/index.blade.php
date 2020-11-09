@@ -62,11 +62,14 @@
                                
 
                                 <td>
-                                    <a href="{{route('slider.edit', ['id'=>$slider['id']])}}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <a href="{{route('slider.edit', ['slider'=>$slider['id']])}}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                         <i class="mdi mdi-pencil font-size-18"></i></a>
                             
 
-                                    <a href="{{route('slider.delete', ['id'=>$slider['id']])}}" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    <a href=""
+                                        data-url="{{route('slider.delete', ['slider'=>$slider['id']])}}" 
+                                        id="action_delete"
+                                        class="text-danger action_delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
                                         <i class="mdi mdi-close font-size-18"></i></a>
                                 </td>
                                
@@ -86,4 +89,9 @@
     </div>
 </div>
 <!-- end row -->
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{asset('admins/product/index.js')}}"></script>
 @endsection
