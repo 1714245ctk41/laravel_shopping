@@ -59,6 +59,13 @@
                 </li>
 
                 <li>
+                    <a href="{{route('permissions.createPermission')}}" class=" waves-effect">
+                        <i class="bx bx-menu-alt-left"></i>
+                        <span>Tạo dữ liệu bảng permissions</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="bx bx-home-circle"></i><span
                             class="badge badge-pill badge-info float-right">03</span>

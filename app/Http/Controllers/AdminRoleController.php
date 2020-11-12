@@ -28,6 +28,8 @@ class AdminRoleController extends Controller
         return view('admin.role.index', compact('roles'));
     }
 
+
+
     //! begin delete
     public function delete(Role $role)
     {

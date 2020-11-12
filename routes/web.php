@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPermissionController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AdminSettingController;
@@ -32,11 +33,11 @@ use Illuminate\Support\Facades\Auth;
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('categories.index')->middleware('can:category-list');
+        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create')->middleware('can:category-add');
         Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
-        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit')->middleware('can:category-edit');
+        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete')->middleware('can:category-delete');
         Route::POST('/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
-        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
     });
 
     Route::prefix('menus')->group(function () {
@@ -49,9 +50,9 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('Adminproduct')->group(function () {
-        Route::get('/', [AdminProductController::class, 'index'])->name('product.index');
+        Route::get('/', [AdminProductController::class, 'index'])->name('product.index')->middleware('can:product-list');
         Route::post('/store', [AdminProductController::class, 'store'])->name('product.store');
-        Route::get('/edit/{product}', [AdminProductController::class, 'edit'])->name('product.edit');
+        Route::get('/edit/{product}', [AdminProductController::class, 'edit'])->name('product.edit')->middleware('can:product-edit,product');
         Route::get('/delete/{product}', [AdminProductController::class, 'delete'])->name('product.delete');
         Route::POST('/update/{product}', [AdminProductController::class, 'update'])->name('product.update');
         Route::get('/create', [AdminProductController::class, 'create'])->name('product.create');
@@ -92,6 +93,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{role}', [AdminRoleController::class, 'delete'])->name('roles.delete');
         Route::POST('/update/{role}', [AdminRoleController::class, 'update'])->name('roles.update');
         Route::get('/create', [AdminRoleController::class, 'create'])->name('roles.create');
+    });
+
+    Route::prefix('permissions')->group(function () {
+        Route::get('/', [AdminPermissionController::class, 'createPermission'])->name('permissions.createPermission');
+        Route::post('/store', [AdminPermissionController::class, 'store'])->name('permissions.store');
+        // Route::get('/edit/{permission}', [AdminRoleController::class, 'edit'])->name('permissions.edit');
+        // Route::get('/delete/{permission}', [AdminRoleController::class, 'delete'])->name('permissions.delete');
+        // Route::POST('/update/{permission}', [AdminRoleController::class, 'update'])->name('permissions.update');
+        // Route::get('/create', [AdminRoleController::class, 'create'])->name('permissions.create');
     });
 });
 

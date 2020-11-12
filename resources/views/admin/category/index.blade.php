@@ -15,6 +15,8 @@
                             </div>
                         </div>
                     </div>
+                    @can('category-add')
+
                     <div class="col-sm-8">
                         <div class="text-sm-right">
                         <a href="{{route('categories.create')}}">
@@ -23,6 +25,8 @@
                             </a>
                         </div>
                     </div><!-- end col-->
+                    @endcan
+
                 </div>
 
                 <div class="table-responsive">
@@ -57,8 +61,12 @@
                                 </td>
 
                                 <td>
+                                    @can('category-edit')
+                                        
                                     <a href="{{route('categories.edit', ['id'=>$category['id']])}}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                         <i class="mdi mdi-pencil font-size-18"></i></a>
+                                        @endcan
+
                             
 
                                     <a href="{{route('categories.delete', ['id'=>$category['id']])}}" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
