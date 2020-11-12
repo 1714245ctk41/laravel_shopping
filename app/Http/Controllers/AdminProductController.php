@@ -16,12 +16,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductAddRequest;
-
+use App\Traits\DeleteModelTrait;
 
 class AdminProductController extends Controller
 {
-
-    use TraitsStorageImageTrait;
+    use DeleteModelTrait, TraitsStorageImageTrait;
     private $product;
     private $productImage;
     private $tag;
@@ -55,8 +54,10 @@ class AdminProductController extends Controller
     // ! Begin delete
     public function delete(Product $product)
     {
+        // $this->deleteModelTrait($product);
         try {
             $product->delete();
+
             // $product->tags()->deattach();
 
             return response()->json([

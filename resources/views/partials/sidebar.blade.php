@@ -38,6 +38,25 @@
                         <span>Slider</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('settings.index')}}" class=" waves-effect">
+                        <i class="bx bx-menu-alt-left"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('users.index')}}" class=" waves-effect">
+                        <i class="bx bx-menu-alt-left"></i>
+                        <span>Danh sách nhân viên</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('roles.index')}}" class=" waves-effect">
+                        <i class="bx bx-menu-alt-left"></i>
+                        <span>Danh sách vai trò</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminRoleController;
+use App\Http\Controllers\AdminSettingController;
+use App\Http\Controllers\AdminUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
@@ -18,9 +21,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/home', function () {
 //     return view('home');
@@ -28,7 +31,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
-        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+        Route::get('/', [CategoryController::class, 'index'])->name('categories.index')->middleware('can:category-list');
         Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
         Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
         Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
@@ -37,7 +40,7 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('menus')->group(function () {
-        Route::get('/', [MenuController::class, 'index'])->name('menus.index');
+        Route::get('/', [MenuController::class, 'index'])->name('menus.index')->middleware('can:menu-list');
         Route::post('/store', [MenuController::class, 'store'])->name('menus.store');
         Route::get('/edit/{id}', [MenuController::class, 'edit'])->name('menus.edit');
         Route::get('/delete/{id}', [MenuController::class, 'delete'])->name('menus.delete');
@@ -61,6 +64,34 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{slider}', [SliderController::class, 'delete'])->name('slider.delete');
         Route::POST('/update/{slider}', [SliderController::class, 'update'])->name('slider.update');
         Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+    });
+
+
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [AdminSettingController::class, 'index'])->name('settings.index');
+        Route::post('/store', [AdminSettingController::class, 'store'])->name('settings.store');
+        Route::get('/edit/{setting}', [AdminSettingController::class, 'edit'])->name('settings.edit');
+        Route::get('/delete/{setting}', [AdminSettingController::class, 'delete'])->name('settings.delete');
+        Route::POST('/update/{setting}', [AdminSettingController::class, 'update'])->name('settings.update');
+        Route::get('/create', [AdminSettingController::class, 'create'])->name('settings.create');
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', [AdminUserController::class, 'index'])->name('users.index');
+        Route::post('/store', [AdminUserController::class, 'store'])->name('users.store');
+        Route::get('/edit/{user}', [AdminUserController::class, 'edit'])->name('users.edit');
+        Route::get('/delete/{user}', [AdminUserController::class, 'delete'])->name('users.delete');
+        Route::POST('/update/{user}', [AdminUserController::class, 'update'])->name('users.update');
+        Route::get('/create', [AdminUserController::class, 'create'])->name('users.create');
+    });
+
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [AdminRoleController::class, 'index'])->name('roles.index');
+        Route::post('/store', [AdminRoleController::class, 'store'])->name('roles.store');
+        Route::get('/edit/{role}', [AdminRoleController::class, 'edit'])->name('roles.edit');
+        Route::get('/delete/{role}', [AdminRoleController::class, 'delete'])->name('roles.delete');
+        Route::POST('/update/{role}', [AdminRoleController::class, 'update'])->name('roles.update');
+        Route::get('/create', [AdminRoleController::class, 'create'])->name('roles.create');
     });
 });
 

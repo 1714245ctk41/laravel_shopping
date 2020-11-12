@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@include('partials.content-header', ['name' => 'Slider', 'key' => 'List'])
+@include('partials.content-header', ['name' => 'role', 'key' => 'List'])
 
 <div class="row">
     <div class="col-12">
@@ -17,9 +17,9 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="text-sm-right">
-                        <a href="{{route('slider.create')}}">
+                        <a href="{{route('roles.create')}}">
                             <button type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2">
-                                <i class="mdi mdi-plus mr-1"></i> Add New Slider</button>
+                                <i class="mdi mdi-plus mr-1"></i> Add New role</button>
                             </a>
                         </div>
                     </div><!-- end col-->
@@ -35,15 +35,14 @@
                                         <label class="custom-control-label" for="customCheck1">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>slider ID</th>
-                                <th>Tên slider</th>
-                                <th>Description</th>
-                                <th>Hình ảnh</th>
+                                <th>role ID</th>
+                                <th>Tên vai trò</th>
+                                <th>Mô tả vai trò</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sliders as $slider)
+                            @foreach ($roles as $role)
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
@@ -51,23 +50,21 @@
                                         <label class="custom-control-label" for="customCheck2">&nbsp;</label>
                                     </div>
                                 </td>
-                            <td><a href="javascript: void(0);" class="text-body font-weight-bold">{{$slider['id']}}</a> </td>
-                                <td>{{$slider['name']}}</td>
+                            <td><a href="javascript: void(0);" class="text-body font-weight-bold">{{$role['id']}}</a> </td>
+                                <td>{{$role['name']}}</td>
                                 <td>
-                                    {{$slider['description']}}
+                                    {{$role['display_name']}}
                                 </td>
-                                <td>
-                                <img width="100px" src="{{asset($slider['image_path'])}}" alt="">
-                                </td>
+                      
                                
 
                                 <td>
-                                    <a href="{{route('slider.edit', ['slider'=>$slider['id']])}}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <a href="{{route('roles.edit', ['role'=>$role['id']])}}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                         <i class="mdi mdi-pencil font-size-18"></i></a>
                             
 
                                     <a href=""
-                                        data-url="{{route('slider.delete', ['slider'=>$slider['id']])}}" 
+                                        data-url="{{route('roles.delete', ['role'=>$role['id']])}}" 
                                         id="action_delete"
                                         class="text-danger action_delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
                                         <i class="mdi mdi-close font-size-18"></i></a>
@@ -83,7 +80,7 @@
                     </table>
                 </div>
               
-              @include('partials.pagination', ['paginator' => $sliders])
+              @include('partials.pagination', ['paginator' => $roles])
             </div>
         </div>
     </div>

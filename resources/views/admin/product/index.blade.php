@@ -98,6 +98,6 @@
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="{{asset('admins/product/index.js')}}"></script>
+<script src="{{asset('admins/main.js')}}"></script>
 
 @endsection
