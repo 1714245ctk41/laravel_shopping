@@ -63,7 +63,7 @@
                                             <img src="{{$slider['image_path']}}" width="150px" class="img-fluid" alt="Responsive image">
                                         </div>
                                         </div>
-                                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Thêm slider</button>
+                                            <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Edit slider</button>
                                             {{-- <button type="submit" class="btn btn-secondary waves-effect">Cancel</button> --}}
                                         </form>
         
