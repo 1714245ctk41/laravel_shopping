@@ -98,10 +98,10 @@ Route::prefix('admin')->group(function () {
     Route::prefix('permissions')->group(function () {
         Route::get('/', [AdminPermissionController::class, 'createPermission'])->name('permissions.createPermission');
         Route::post('/store', [AdminPermissionController::class, 'store'])->name('permissions.store');
-        // Route::get('/edit/{permission}', [AdminRoleController::class, 'edit'])->name('permissions.edit');
-        // Route::get('/delete/{permission}', [AdminRoleController::class, 'delete'])->name('permissions.delete');
-        // Route::POST('/update/{permission}', [AdminRoleController::class, 'update'])->name('permissions.update');
-        // Route::get('/create', [AdminRoleController::class, 'create'])->name('permissions.create');
+        Route::get('/edit/{permission}', [AdminRoleController::class, 'edit'])->name('permissions.edit');
+        Route::get('/delete/{permission}', [AdminRoleController::class, 'delete'])->name('permissions.delete');
+        Route::POST('/update/{permission}', [AdminRoleController::class, 'update'])->name('permissions.update');
+        Route::get('/create', [AdminRoleController::class, 'create'])->name('permissions.create');
     });
 });
 

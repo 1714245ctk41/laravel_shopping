@@ -1,0 +1,1 @@
+<h2>Bạn không có quyền</h2><?php /**PATH D:\php_mySQL_cakephp2_laravel\laravel\laravel_learn_from_youtube\laravel_shopping\resources\views/errors/403.blade.php ENDPATH**/ ?>
